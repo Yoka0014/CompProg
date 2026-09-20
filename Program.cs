@@ -1216,8 +1216,9 @@ namespace DataStructures
             found = true;
             if (node.Left is not null)
             {
+                var left = node.Left;
                 Node maxNode;
-                (node.Left, maxNode) = RemoveMax(node.Left, out shirinked);
+                (node.Left, maxNode) = RemoveMax(left, out shirinked);
                 node.Value = maxNode.Value;
 
                 if (shirinked)
@@ -1246,8 +1247,9 @@ namespace DataStructures
             }
 
             var height = node.Height;
+            var right = node.Right;
             Node maxNode;
-            (node.Right, maxNode) = RemoveMax(node.Right, out shrinked);
+            (node.Right, maxNode) = RemoveMax(right, out shrinked);
             if (shrinked)
             {
                 if (node.Balance > 1)
