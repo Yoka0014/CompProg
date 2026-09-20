@@ -50,29 +50,64 @@ static void Solve()
 
 #region Library 
 
+/// <summary>
+/// 入出力に関する補助機能を提供する．
+/// </summary>
 static class IOUtil
 {
+    /// <summary>
+    /// IEnumerableの先頭2要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2)
         => (item1, item2) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumerableの先頭3要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2, out T item3)
         => (item1, item2, item3) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumerableの先頭4要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2, out T item3, out T item4)
         => (item1, item2, item3, item4) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumerableの先頭5要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5)
         => (item1, item2, item3, item4, item5) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumerableの先頭6要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5, out T item6)
         => (item1, item2, item3, item4, item5, item6) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumerableの先頭7要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5, out T item6, out T item7)
         => (item1, item2, item3, item4, item5, item6, item7) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumerableの先頭8要素をタプル分解構文で受け取れるようにする．
+    /// 内部的にはIEnumeratorへのDeconstructに委譲する．
+    /// </summary>
     public static void Deconstruct<T>(this IEnumerable<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5, out T item6, out T item7, out T item8)
         => (item1, item2, item3, item4, item5, item6, item7, item8) = enumerator.GetEnumerator();
 
+    /// <summary>
+    /// IEnumeratorから2要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が2個に満たない，または2個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2)
     {
         if (!enumerator.MoveNext())
@@ -86,6 +121,10 @@ static class IOUtil
         item2 = enumerator.Current;
     }
 
+    /// <summary>
+    /// IEnumeratorから3要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が3個に満たない，または3個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2, out T item3)
     {
         (item1, item2) = enumerator;
@@ -96,6 +135,10 @@ static class IOUtil
         item3 = enumerator.Current;
     }
 
+    /// <summary>
+    /// IEnumeratorから4要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が4個に満たない，または4個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2, out T item3, out T item4)
     {
         (item1, item2, item3) = enumerator;
@@ -106,6 +149,10 @@ static class IOUtil
         item4 = enumerator.Current;
     }
 
+    /// <summary>
+    /// IEnumeratorから5要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が5個に満たない，または5個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5)
     {
         (item1, item2, item3, item4) = enumerator;
@@ -116,6 +163,10 @@ static class IOUtil
         item5 = enumerator.Current;
     }
 
+    /// <summary>
+    /// IEnumeratorから6要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が6個に満たない，または6個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5, out T item6)
     {
         (item1, item2, item3, item4, item5) = enumerator;
@@ -126,6 +177,10 @@ static class IOUtil
         item6 = enumerator.Current;
     }
 
+    /// <summary>
+    /// IEnumeratorから7要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が7個に満たない，または7個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5, out T item6, out T item7)
     {
         (item1, item2, item3, item4, item5, item6) = enumerator;
@@ -136,6 +191,10 @@ static class IOUtil
         item7 = enumerator.Current;
     }
 
+    /// <summary>
+    /// IEnumeratorから8要素を取り出し，タプル分解構文で受け取れるようにする．
+    /// </summary>
+    /// <exception cref="ArgumentException">要素数が8個に満たない，または8個を超える場合．</exception>
     public static void Deconstruct<T>(this IEnumerator<T> enumerator, out T item1, out T item2, out T item3, out T item4, out T item5, out T item6, out T item7, out T item8)
     {
         (item1, item2, item3, item4, item5, item6, item7) = enumerator;
@@ -146,12 +205,21 @@ static class IOUtil
         item8 = enumerator.Current;
     }
 
+    /// <summary>
+    /// 標準出力とデバッグ出力の両方にobjを1行で出力する．
+    /// </summary>
+    /// <param name="obj">出力する値．</param>
     public static void Print(object obj)
     {
         Console.WriteLine(obj);
         Debug.WriteLine(obj);
     }
 
+    /// <summary>
+    /// condがtrueなら"Yes"，falseなら"No"を標準出力とデバッグ出力の両方に出力する．
+    /// </summary>
+    /// <param name="cond">出力する真偽値．</param>
+    /// <returns>condをそのまま返す．</returns>
     public static bool PrintYesOrNo(bool cond)
     {
         Console.WriteLine(cond ? "Yes" : "No");
@@ -159,6 +227,11 @@ static class IOUtil
         return cond;
     }
 
+    /// <summary>
+    /// コレクションの各要素を"[e0, e1, ...]"の形式で標準出力とデバッグ出力の両方に出力する．
+    /// </summary>
+    /// <typeparam name="T">要素の型．</typeparam>
+    /// <param name="e">出力するコレクション．空でないこと．</param>
     public static void PrintCollection<T>(IEnumerable<T> e)
     {
         var sb = new StringBuilder();
@@ -172,8 +245,16 @@ static class IOUtil
     }
 }
 
+/// <summary>
+/// 汎用的な型引数に対する事前条件検査をまとめたクラス．
+/// </summary>
 static class Exceptions
 {
+    /// <summary>
+    /// TSが整数型（sbyte, byte, short, ushort, int, uint, long, ulong, BigIntegerのいずれか）でなければ例外を投げる．
+    /// </summary>
+    /// <typeparam name="T">検査対象の型．</typeparam>
+    /// <exception cref="ArgumentException">Tが整数型でない場合．</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void ThrowIfNotInteger<T>()
     {
@@ -186,21 +267,45 @@ static class Exceptions
     }
 }
 
+/// <summary>
+/// 型引数によって処理を分岐させるためのマーカーインターフェース．
+/// </summary>
 interface IFlag { }
+
+/// <summary>IFlagがtrueであることを表すマーカー型．</summary>
 struct True : IFlag { }
+
+/// <summary>IFlagがfalseであることを表すマーカー型．</summary>
 struct False : IFlag { }
 
-struct FastHashInt64
+/// <summary>
+/// long値をCRC32によってハッシュ化し，Dictionary/HashSetのキーとして用いた際の検索を高速化するためのラッパー型．
+/// </summary>
+struct FastHashInt64(long value)
 {
-    public long Value { get; set; }
-
-    public FastHashInt64(long value) => Value = value;
+    public long Value { get; set; } = value;
 
     public override readonly int GetHashCode() => (int)Sse42.X64.Crc32(0UL, (ulong)Value);
 
     public static implicit operator FastHashInt64(long value) => new(value);
 }
 
+/// <summary>
+/// ulong値をCRC32によってハッシュ化し，Dictionary/HashSetのキーとして用いた際の検索を高速化するためのラッパー型．
+/// </summary>
+struct FastHashUInt64(ulong value)
+{
+    public ulong Value { get; set; } = value;
+
+    public override readonly int GetHashCode() => (int)Sse42.X64.Crc32(0UL, Value);
+
+    public static implicit operator FastHashUInt64(ulong value) => new(value);
+}
+
+/// <summary>
+/// 法998244353の下でのモジュラー演算を行う値型．
+/// long，BigIntegerとの暗黙変換をサポートする．
+/// </summary>
 struct ModInt998244353
 {
     const long _mod = 998244353;
@@ -208,6 +313,10 @@ struct ModInt998244353
     public static long Mod => _mod;
     public long Value { get; set; }
 
+    /// <summary>
+    /// valueをmodで正規化して初期化する．
+    /// </summary>
+    /// <param name="value">初期値．負数も可．</param>
     public ModInt998244353(long value)
     {
         Value = value % _mod;
@@ -253,33 +362,33 @@ struct ModInt998244353
 
     public override readonly int GetHashCode() => (int)Sse42.X64.Crc32(0UL, (ulong)Value);
 
+    /// <summary>このインスタンスのmodにおける逆元を返す．</summary>
+    /// <returns>Value * Inv() ≡ 1 (mod _mod) を満たす値．</returns>
+    /// <remarks>計算量: O(log _mod)．</remarks>
     public readonly ModInt998244353 Inv() => new(MathEx.ModInv(Value, _mod));
+
+    /// <summary>このインスタンスのexp乗をmod下で計算する．</summary>
+    /// <param name="exp">指数．</param>
+    /// <returns>Value^exp mod _mod．</returns>
+    /// <remarks>計算量: O(log exp)．繰り返し二乗法（BigInteger.ModPow）を用いる．</remarks>
     public readonly ModInt998244353 Pow(long exp) => BigInteger.ModPow(Value, exp, _mod);
 }
 
-struct FastHashUInt64
-{
-    public ulong Value { get; set; }
-
-    public FastHashUInt64(ulong value)
-    {
-        Value = value;
-    }
-
-    public override readonly int GetHashCode() => (int)Sse42.X64.Crc32(0UL, Value);
-
-    public static implicit operator FastHashUInt64(ulong value) => new(value);
-}
-
+/// <summary>
+/// 文字列のローリングハッシュを計算する機能を提供する．
+/// </summary>
 static class RollingHash
 {
+    /// <summary>ハッシュ計算に用いる基数．</summary>
     public static ulong Base { get; } = 100000007;
 
     /// <summary>
+    /// 文字列全体のローリングハッシュ値を計算する．
     /// h = str[0] * b^(n - 1) + ... + str[^1] * b^0
     /// </summary>
-    /// <param name="str"></param>
-    /// <returns></returns>
+    /// <param name="str">ハッシュ値を計算する文字列．</param>
+    /// <returns>strのローリングハッシュ値．</returns>
+    /// <remarks>計算量: O(|str|)．</remarks>
     public static ulong GetRollingHashCode(this string str)
     {
         var hashCode = 0UL;
@@ -288,6 +397,12 @@ static class RollingHash
         return hashCode;
     }
 
+    /// <summary>
+    /// strの各prefix（str[0..1], str[0..2], ...str[0..^0]）のローリングハッシュ値を先頭から順に列挙する．
+    /// </summary>
+    /// <param name="str">ハッシュ値を計算する文字列．</param>
+    /// <returns>各prefixのローリングハッシュ値を先頭から順に返す列挙子．</returns>
+    /// <remarks>計算量: 全体でO(|str|)．</remarks>
     public static IEnumerable<ulong> EnumeratePrefixHashCodes(this string str)
     {
         var hashCode = 0UL;
@@ -296,16 +411,31 @@ static class RollingHash
     }
 }
 
+/// <summary>
+/// 数論・数学に関する補助機能を提供する．
+/// </summary>
 static class MathEx
 {
+    /// <summary>xの平方根以上となる最小の整数を返す．</summary>
+    /// <param name="x">対象の値．0以上であること．</param>
+    /// <returns>n * n &gt;= x を満たす最小の整数n．</returns>
+    /// <remarks>計算量: O(log x)．内部で二分探索を行う．</remarks>
     public static long CeilSqrt(long x) => BinarySearch.LowerBound(n => n * n, x, 0, 3037000500);
 
+    /// <summary>xの平方根以下となる最大の整数を返す．</summary>
+    /// <param name="x">対象の値．0以上であること．</param>
+    /// <returns>n * n &lt;= x を満たす最大の整数n．</returns>
+    /// <remarks>計算量: O(log x)．</remarks>
     public static long FloorSqrt(long x)
     {
         var sq = CeilSqrt(x);
         return (x == sq * sq) ? sq : sq - 1;
     }
 
+    /// <summary>xの絶対値を2の累乗で表したときの指数の切り捨てを返す．xが負数の場合は結果に負号をつける．</summary>
+    /// <param name="x">対象の値．</param>
+    /// <returns>|x|が0でなければ floor(log2(|x|)) を，xが負数ならその符号を反転した値を返す．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     public static int FloorLog2(long x)
     {
         var bits = (x << 1) >> 1;
@@ -313,14 +443,32 @@ static class MathEx
         return (bits != x) ? -y : y;
     }
 
+    /// <summary>xを2の累乗で表したときの指数の切り上げを返す．</summary>
+    /// <param name="x">対象の値．正数であること．</param>
+    /// <returns>ceil(log2(x))．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     public static int CeilLog2(long x)
     {
         var l = FloorLog2(x);
         return (1L << l < x) ? l + 1 : l;
     }
 
+    /// <summary>xを2の累乗で表したときの指数の切り捨てを返す．</summary>
+    /// <param name="x">対象の値．0でないこと．</param>
+    /// <returns>floor(log2(x))．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     public static int FloorLog2(ulong x) => 63 - BitOperations.LeadingZeroCount(x);
 
+    /// <summary>
+    /// xのy乗を整数演算で計算する（浮動小数点誤差なし）．
+    /// </summary>
+    /// <typeparam name="T">整数型．</typeparam>
+    /// <param name="x">底．</param>
+    /// <param name="y">指数．0以上であること．</param>
+    /// <returns>x^y．</returns>
+    /// <exception cref="ArgumentException">Tが整数型でない場合．</exception>
+    /// <exception cref="ArgumentOutOfRangeException">yが負数の場合．</exception>
+    /// <remarks>計算量: O(y)．繰り返し二乗法ではなく単純な累乗算であることに注意．</remarks>
     public static T PowInt<T>(T x, int y) where T : struct, INumber<T>
     {
         Exceptions.ThrowIfNotInteger<T>();
@@ -334,6 +482,16 @@ static class MathEx
         return res;
     }
 
+    /// <summary>
+    /// modを法としたnの逆元を，拡張ユークリッドの互除法を用いて計算する．
+    /// </summary>
+    /// <typeparam name="T">整数型．</typeparam>
+    /// <param name="n">逆元を求める値．0でないこと．</param>
+    /// <param name="mod">法．</param>
+    /// <returns>n * result ≡ 1 (mod mod) を満たすresult．</returns>
+    /// <exception cref="ArgumentException">Tが整数型でない場合，またはnとmodが互いに素でない場合．</exception>
+    /// <exception cref="DivideByZeroException">nが0の場合．</exception>
+    /// <remarks>計算量: O(log(min(n, mod)))．</remarks>
     public static T ModInv<T>(T n, T mod) where T : struct, INumber<T>
     {
         Exceptions.ThrowIfNotInteger<T>();
@@ -352,10 +510,11 @@ static class MathEx
     /// <summary>
     /// 与えられた整数a，bを用いて，1次不定方程式ax + by = gcd(a, b)を解く．
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">整数型．</typeparam>
     /// <param name="a">xの係数</param>
     /// <param name="b">yの係数</param>
     /// <returns>(x, y, gcd(a, b))</returns>
+    /// <remarks>計算量: O(log(min(a, b)))．</remarks>
     public static (T x, T y, T gcd) ComputeBezoutCoeff<T>(T a, T b) where T : struct, INumber<T>
     {
         Exceptions.ThrowIfNotInteger<T>();
@@ -371,6 +530,15 @@ static class MathEx
         return (y, x - q * y, gcd);
     }
 
+    /// <summary>
+    /// nの階乗を計算する．
+    /// </summary>
+    /// <typeparam name="T">整数型．</typeparam>
+    /// <param name="n">対象の値．0以上であること．</param>
+    /// <returns>n!．</returns>
+    /// <exception cref="ArgumentException">Tが整数型でない場合．</exception>
+    /// <exception cref="ArgumentOutOfRangeException">nが負数の場合．</exception>
+    /// <remarks>計算量: O(n)．</remarks>
     public static T Factorial<T>(T n) where T : INumber<T>
     {
         Exceptions.ThrowIfNotInteger<T>();
@@ -384,6 +552,16 @@ static class MathEx
         return f;
     }
 
+    /// <summary>
+    /// modを法としたnの階乗を計算する．
+    /// </summary>
+    /// <typeparam name="T">整数型．</typeparam>
+    /// <param name="n">対象の値．0以上であること．</param>
+    /// <param name="mod">法．</param>
+    /// <returns>n! % mod．</returns>
+    /// <exception cref="ArgumentException">Tが整数型でない場合．</exception>
+    /// <exception cref="ArgumentOutOfRangeException">nが負数の場合．</exception>
+    /// <remarks>計算量: O(n)．</remarks>
     public static T Factorial<T>(T n, T mod) where T : INumber<T>
     {
         Exceptions.ThrowIfNotInteger<T>();
@@ -400,11 +578,13 @@ static class MathEx
     /// <summary>
     /// modを法とした場合の0 ~ nまでの階乗のテーブルを作る．
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="n"></param>
-    /// <param name="mod"></param>
+    /// <typeparam name="T">整数型．</typeparam>
+    /// <param name="n">テーブルの最大添字．0以上であること．</param>
+    /// <param name="mod">法．</param>
     /// <returns>table[i] == i! % mod を満たす，長さn + 1のテーブル．</returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="ArgumentException">Tが整数型でない場合．</exception>
+    /// <exception cref="ArgumentOutOfRangeException">nが負数の場合．</exception>
+    /// <remarks>計算量: O(n)．</remarks>
     public static T[] CreateFactorialTable<T>(T n, T mod) where T : struct, INumber<T>
     {
         Exceptions.ThrowIfNotInteger<T>();
@@ -427,10 +607,9 @@ static class MathEx
     /// <summary>
     /// 998244353を法とした場合の0 ~ nまでの階乗のテーブルを作る．
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="n"></param>
-    /// <param name="mod"></param>
+    /// <param name="n">テーブルの最大添字．0以上であること．</param>
     /// <returns>table[i] == i! % 998244353 を満たす，長さn + 1のテーブル．</returns>
+    /// <remarks>計算量: O(n)．</remarks>
     public static ModInt998244353[] CreateModFactorialTable(int n)
     {
         var table = new ModInt998244353[n + 1];
@@ -445,10 +624,9 @@ static class MathEx
     /// <summary>
     /// 998244353を法とした場合の0 ~ nまでの階乗の逆元のテーブルを作る．
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="n"></param>
-    /// <param name="mod"></param>
+    /// <param name="n">テーブルの最大添字．0以上であること．</param>
     /// <returns>table[i] == (1 / i!) % 998244353 を満たす，長さn + 1のテーブル．</returns>
+    /// <remarks>計算量: O(n)．末尾の逆元計算にO(log 998244353)を要するが，それ以降は各要素O(1)で計算する．</remarks>
     public static ModInt998244353[] CreateModFactorialInvTable(int n)
     {
         var table = new ModInt998244353[n + 1];
@@ -461,6 +639,12 @@ static class MathEx
         return table;
     }
 
+    /// <summary>
+    /// Nの正の約数を全て昇順に列挙する．
+    /// </summary>
+    /// <param name="N">対象の値．正数であること．</param>
+    /// <returns>Nの正の約数を昇順に並べたリスト．</returns>
+    /// <remarks>計算量: O(√N + d log d)．dはNの約数の個数（試し割りにO(√N)，ソートにO(d log d)）．</remarks>
     public static List<long> CalcDivisors(long N)
     {
         List<long> divisors = [];
@@ -486,6 +670,7 @@ static class MathEx
     /// </summary>
     /// <param name="n">整数の最大値</param>
     /// <returns>table[i] := {iの全ての正の約数}を満たす長さn + 1のテーブル．</returns>
+    /// <remarks>計算量: O(n log n)（調和級数の和）．</remarks>
     public static List<int>[] CreateDivisorTable(int n)
     {
         var table = new List<int>[n + 1];
@@ -499,6 +684,12 @@ static class MathEx
         return table;
     }
 
+    /// <summary>
+    /// エラトステネスの篩を用いて，0 ~ maxまでの各整数が素数かどうかを判定するテーブルを作る．
+    /// </summary>
+    /// <param name="max">テーブルの最大添字．</param>
+    /// <returns>isPrime[i] == (iが素数か) を満たす，長さmax + 1のテーブル．</returns>
+    /// <remarks>計算量: O(max log log max)．</remarks>
     public static bool[] CreateIsPrimeTable(int max)
     {
         var isPrime = Enumerable.Repeat(true, max + 1).ToArray();
@@ -516,6 +707,12 @@ static class MathEx
         return isPrime;
     }
 
+    /// <summary>
+    /// 試し割り法によりnを素因数分解する．
+    /// </summary>
+    /// <param name="n">素因数分解する値．正数であること．</param>
+    /// <returns>(素因数, 指数)の組のリスト．素因数の昇順に並ぶ．</returns>
+    /// <remarks>計算量: O(√n)．</remarks>
     public static List<(long Base, long Exp)> PrimeFactorize(long n)
     {
         var factors = new List<(long, long)>();
@@ -540,13 +737,30 @@ static class MathEx
         return factors;
     }
 
+    /// <summary>ユークリッドの互除法によりaとbの最大公約数を求める．</summary>
+    /// <param name="a">対象の値．</param>
+    /// <param name="b">対象の値．</param>
+    /// <returns>gcd(a, b)．</returns>
+    /// <remarks>計算量: O(log(min(a, b)))．</remarks>
     public static long Gcd(long a, long b) => (b == 0) ? a : Gcd(b, a % b);
 
+    /// <summary>aとbをそれぞれの最大公約数で割り，互いに素な組にする．</summary>
+    /// <param name="a">対象の値．</param>
+    /// <param name="b">対象の値．</param>
+    /// <returns>(a / gcd(a, b), b / gcd(a, b))．</returns>
+    /// <remarks>計算量: O(log(min(a, b)))．</remarks>
     public static (long A, long B) MakeCoprime(long a, long b) => (a / Gcd(a, b), b / Gcd(a, b));
 }
 
+/// <summary>
+/// ビット単位の操作をまとめたクラス．
+/// </summary>
 static class BitManipulations
 {
+    /// <summary>bitsの8バイトのバイト順を反転する（エンディアン変換）．</summary>
+    /// <param name="bits">対象の値．</param>
+    /// <returns>バイト順を反転した値．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ulong ByteSwap(ulong bits)
     {
@@ -560,15 +774,41 @@ static class BitManipulations
         return ret | (bits >> 56);
     }
 
+    /// <summary>bitsの中で最下位の立っているビットの位置を返す．</summary>
+    /// <param name="bits">対象の値．</param>
+    /// <returns>最下位の立っているビットの位置（0-indexed）．bitsが0の場合は64．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     public static int FindFirstSet(ulong bits) => BitOperations.TrailingZeroCount(bits);
+
+    /// <summary>
+    /// bitsの中で最下位の立っているビットを0にクリアした上で，そのクリア後に最下位となる立っているビットの位置を返す．
+    /// EnumerateSetsのように，立っているビットを下位から順に走査する際に用いる．
+    /// </summary>
+    /// <param name="bits">対象の値．呼び出し後，最下位の立っているビットがクリアされた値に書き換わる．</param>
+    /// <returns>クリア後のbitsにおける最下位の立っているビットの位置（0-indexed）．立っているビットがなければ64．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     public static int FindNextSet(ref ulong bits) => FindFirstSet(bits &= (bits - 1));
 
-    public static IEnumerable<int> EnumerateSets(ulong bits) 
+    /// <summary>
+    /// bitsの中で立っているビットの位置を，下位から順に全て列挙する．
+    /// </summary>
+    /// <param name="bits">対象の値．</param>
+    /// <returns>立っているビットの位置（0-indexed）を下位から順に返す列挙子．</returns>
+    /// <remarks>計算量: O(k)．kはbitsの中で立っているビットの個数．</remarks>
+    public static IEnumerable<int> EnumerateSets(ulong bits)
     {
         for (var i = FindFirstSet(bits); bits != 0; i = FindNextSet(ref bits))
             yield return i;
     }
 
+    /// <summary>
+    /// maskで指定した各ビット位置iと，そこからdelta離れた位置i + deltaのビットを入れ替える（ビットの転置に利用する）．
+    /// </summary>
+    /// <param name="x">対象の値．</param>
+    /// <param name="mask">入れ替え元となるビット位置の集合．i + deltaの位置に0を立てておくこと．</param>
+    /// <param name="delta">入れ替え先までのビット位置の差．</param>
+    /// <returns>ビットを入れ替えた後の値．</returns>
+    /// <remarks>計算量: O(1)．</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ulong DeltaSwap(ulong x, ulong mask, int delta)
     {
@@ -579,8 +819,18 @@ static class BitManipulations
 
 namespace IterTools
 {
+    /// <summary>
+    /// 順列に関する機能を提供する．
+    /// </summary>
     public static class Permutation
     {
+        /// <summary>
+        /// seqを辞書順で次の順列に書き換える（std::next_permutation相当）．
+        /// </summary>
+        /// <typeparam name="T">要素の型．</typeparam>
+        /// <param name="seq">書き換え対象の列．</param>
+        /// <returns>次の順列が存在すればtrue．seqが既に降順（辞書順で最大）であればfalseを返し，seqは昇順に並べ替えられる．</returns>
+        /// <remarks>計算量: O(n)．nはseqの長さ．</remarks>
         public static bool Next<T>(Span<T> seq) where T : IComparable<T>
         {
             int i;
@@ -609,6 +859,7 @@ namespace IterTools
         /// <remarks>
         /// 返す配列は列挙のたびに新しく確保するので，そのまま保持してよい．
         /// アロケーションを避けたい場合はNextを直接使う．
+        /// 計算量: 順列の総数をPとして，全体でO(P * n)．
         /// </remarks>
         public static IEnumerable<T[]> Enumerate<T>(T[] seq) where T : IComparable<T>
         {
@@ -627,21 +878,36 @@ namespace IterTools
 
 namespace Algorithms
 {
+    /// <summary>
+    /// 単調な関数や配列に対する二分探索を提供する．
+    /// </summary>
     public static class BinarySearch
     {
         /// <summary>
         /// 半開区間[left, right)で単調増加である関数funcについて, func(x) = keyを満たすxの範囲の下限を返す.
-        /// funx(x) = keyを満たすxが存在しない場合は, func(x) > keyとなるxのうち最小のxを返す.
+        /// func(x) = keyを満たすxが存在しない場合は, func(x) > keyとなるxのうち最小のxを返す.
         /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <param name="func"></param>
-        /// <param name="key"></param>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
+        /// <typeparam name="TKey">funcの返り値およびkeyの型．</typeparam>
+        /// <param name="func">[left, right)で単調増加な関数．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <param name="left">探索区間の下端（この値を含む）．</param>
+        /// <param name="right">探索区間の上端（この値を含まない）．</param>
+        /// <returns>func(x) &gt;= key を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log(right - left))．</remarks>
         public static long LowerBound<TKey>(Func<long, TKey> func, TKey key, long left, long right) where TKey : IComparable<TKey>
             => LowerBound(func, key, left, right, (x, y) => x.CompareTo(y));
 
+        /// <summary>
+        /// 半開区間[left, right)で単調増加である関数funcについて, func(x) = keyを満たすxの範囲の下限を，指定した比較方法を用いて返す.
+        /// </summary>
+        /// <typeparam name="TKey">funcの返り値およびkeyの型．</typeparam>
+        /// <param name="func">[left, right)で単調増加な関数．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <param name="left">探索区間の下端（この値を含む）．</param>
+        /// <param name="right">探索区間の上端（この値を含まない）．</param>
+        /// <param name="comparison">key及びfunc(x)の大小比較方法．</param>
+        /// <returns>comparison(key, func(x)) &lt;= 0 を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log(right - left))．</remarks>
         [MethodImpl(MethodImplOptions.AggressiveOptimization)]
         public static long LowerBound<TKey>(Func<long, TKey> func, TKey key, long left, long right, Comparison<TKey> comparison)
         {
@@ -660,25 +926,55 @@ namespace Algorithms
             return left;
         }
 
+        /// <summary>
+        /// ソート済み配列arrについて, arr[x] = keyを満たすxの範囲の下限を返す.
+        /// arr[x] = keyを満たすxが存在しない場合は, arr[x] > keyとなるxのうち最小のxを返す.
+        /// </summary>
+        /// <typeparam name="T">配列の要素の型．</typeparam>
+        /// <param name="arr">昇順にソート済みの配列．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <returns>arr[x] &gt;= key を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log n)．nはarrの長さ．</remarks>
         public static long LowerBound<T>(T[] arr, T key) where T : IComparable<T>
             => LowerBound(arr, key, (x, y) => x.CompareTo(y));
 
+        /// <summary>
+        /// ソート済み配列arrについて, arr[x] = keyを満たすxの範囲の下限を，指定した比較方法を用いて返す.
+        /// </summary>
+        /// <typeparam name="T">配列の要素の型．</typeparam>
+        /// <param name="arr">comparisonの順序でソート済みの配列．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <param name="comparison">key及びarrの要素の大小比較方法．</param>
+        /// <returns>comparison(key, arr[x]) &lt;= 0 を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log n)．nはarrの長さ．</remarks>
         public static long LowerBound<T>(T[] arr, T key, Comparison<T> comparison)
             => LowerBound(i => arr[i], key, 0, arr.Length, comparison);
 
         /// <summary>
         /// 半開区間[left, right)で単調増加である関数funcについて, func(x) = keyを満たすxの範囲の上限を返す.
-        /// funx(x) = keyを満たすxが存在しない場合は, func(x) > keyとなるxのうち最小のxを返す.
+        /// func(x) = keyを満たすxが存在しない場合は, func(x) > keyとなるxのうち最小のxを返す.
         /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <param name="func"></param>
-        /// <param name="key"></param>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
+        /// <typeparam name="TKey">funcの返り値およびkeyの型．</typeparam>
+        /// <param name="func">[left, right)で単調増加な関数．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <param name="left">探索区間の下端（この値を含む）．</param>
+        /// <param name="right">探索区間の上端（この値を含まない）．</param>
+        /// <returns>func(x) &gt; key を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log(right - left))．</remarks>
         public static long UpperBound<TKey>(Func<long, TKey> func, TKey key, long left, long right) where TKey : IComparable<TKey>
             => UpperBound(func, key, left, right, (x, y) => x.CompareTo(y));
 
+        /// <summary>
+        /// 半開区間[left, right)で単調増加である関数funcについて, func(x) = keyを満たすxの範囲の上限を，指定した比較方法を用いて返す.
+        /// </summary>
+        /// <typeparam name="TKey">funcの返り値およびkeyの型．</typeparam>
+        /// <param name="func">[left, right)で単調増加な関数．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <param name="left">探索区間の下端（この値を含む）．</param>
+        /// <param name="right">探索区間の上端（この値を含まない）．</param>
+        /// <param name="comparison">key及びfunc(x)の大小比較方法．</param>
+        /// <returns>comparison(key, func(x)) &lt; 0 を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log(right - left))．</remarks>
         [MethodImpl(MethodImplOptions.AggressiveOptimization)]
         public static long UpperBound<TKey>(Func<long, TKey> func, TKey key, long left, long right, Comparison<TKey> comparison)
         {
@@ -697,15 +993,43 @@ namespace Algorithms
             return left;
         }
 
+        /// <summary>
+        /// ソート済み配列arrについて, arr[x] = keyを満たすxの範囲の上限を返す.
+        /// arr[x] = keyを満たすxが存在しない場合は, arr[x] > keyとなるxのうち最小のxを返す.
+        /// </summary>
+        /// <typeparam name="T">配列の要素の型．</typeparam>
+        /// <param name="arr">昇順にソート済みの配列．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <returns>arr[x] &gt; key を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log n)．nはarrの長さ．</remarks>
         public static long UpperBound<T>(T[] arr, T key) where T : IComparable<T>
             => UpperBound(arr, key, (x, y) => x.CompareTo(y));
 
+        /// <summary>
+        /// ソート済み配列arrについて, arr[x] = keyを満たすxの範囲の上限を，指定した比較方法comparisonを用いて返す.
+        /// </summary>
+        /// <typeparam name="T">配列の要素の型．</typeparam>
+        /// <param name="arr">comparisonの順序でソート済みの配列．</param>
+        /// <param name="key">探索するキー．</param>
+        /// <param name="comparison">key及びarrの要素の大小比較方法．</param>
+        /// <returns>comparison(key, arr[x]) &lt; 0 を満たす最小のx．</returns>
+        /// <remarks>計算量: O(log n)．nはarrの長さ．</remarks>
         public static long UpperBound<T>(T[] arr, T key, Comparison<T> comparison)
             => UpperBound(i => arr[i], key, 0, arr.Length, comparison);
     }
 
+    /// <summary>
+    /// 座標圧縮を提供する．
+    /// </summary>
     public static class CoordinatesCompression
     {
+        /// <summary>
+        /// coordsの各要素を，重複を除いた値の昇順順位（0-indexed）に置き換える．
+        /// </summary>
+        /// <typeparam name="T">座標の型．</typeparam>
+        /// <param name="coords">圧縮対象の座標列．</param>
+        /// <returns>coordsの各要素を，ソートして重複を除いた配列における出現位置に置き換えた配列．</returns>
+        /// <remarks>計算量: O(n log n)．nはcoordsの長さ．</remarks>
         public static T[] Compress<T>(T[] coords) where T : INumber<T>
         {
             var sorted = coords.Distinct().ToArray();
@@ -719,8 +1043,18 @@ namespace Algorithms
         }
     }
 
+    /// <summary>
+    /// Manacherのアルゴリズムによる文字列の回文半径の計算を提供する．
+    /// </summary>
     public static class Manacher
     {
+        /// <summary>
+        /// 各中心位置における最大の回文半径をManacherのアルゴリズムで計算する．
+        /// 偶数長の回文も扱えるように，文字間に番兵文字を挿入した奇数長の文字列を渡すこと．
+        /// </summary>
+        /// <param name="s">対象の文字列．長さが奇数であること．</param>
+        /// <returns>radius[i] := sのi文字目を中心とする最大の回文の半径（自身を含む片側の長さ）を満たすテーブル．</returns>
+        /// <remarks>計算量: O(|s|)．</remarks>
         public static int[] CalcPalindromeRadius(string s)
         {
             Debug.Assert(s.Length % 2 != 0);
@@ -746,8 +1080,17 @@ namespace Algorithms
         }
     }
 
+    /// <summary>
+    /// グラフに関するアルゴリズムを提供する．
+    /// </summary>
     public static class Graph
     {
+        /// <summary>
+        /// グラフをトポロジカルソートする（Kahnのアルゴリズム）．
+        /// </summary>
+        /// <param name="graph">graph[i]がノードiから辺が張られている先のノード番号の列である，隣接リスト形式のグラフ．</param>
+        /// <returns>トポロジカル順に並べたノード番号のリスト．graphに閉路が含まれる場合は空のリストを返す．</returns>
+        /// <remarks>計算量: O(V + E)．Vはノード数，Eは辺数．</remarks>
         public static List<int> TopologicalSort(List<int>[] graph)
         {
             var inDegrees = new int[graph.Length];
@@ -788,6 +1131,12 @@ namespace Algorithms
             return result;
         }
 
+        /// <summary>
+        /// Kosarajuのアルゴリズムにより，有向グラフの強連結成分（SCC）を分解する．
+        /// </summary>
+        /// <param name="graph">graph[i]がノードiから辺が張られている先のノード番号の列である，隣接リスト形式のグラフ．</param>
+        /// <returns>各強連結成分に属するノード番号の集合の配列．</returns>
+        /// <remarks>計算量: O(V + E)．Vはノード数，Eは辺数．</remarks>
         public static HashSet<int>[] GetSCCs(List<int>[] graph)
         {
             var visited = (graph.Length <= 1024) ? stackalloc bool[graph.Length] : new bool[graph.Length];
@@ -820,6 +1169,7 @@ namespace Algorithms
 
             return sccs.ToArray();
 
+            // AssignIDsがTrueの場合は帰りがけ順（postorder）を記録し，Falseの場合はconnectedに到達可能なノードを集める．
             static void Dfs<AssignIDs>(List<int>[] graph, int node, HashSet<int>? connected, Span<bool> visited, int[]? postorder, ref int nodeCount) where AssignIDs : struct, IFlag
             {
                 visited[node] = true;
@@ -839,6 +1189,16 @@ namespace Algorithms
             }
         }
 
+        /// <summary>
+        /// ダイクストラ法により，startから各ノードまでの最短距離を計算する．辺の重みは非負であること．
+        /// </summary>
+        /// <typeparam name="T">辺の重みの型．</typeparam>
+        /// <param name="graph">graph[i]がノードiから張られている(行き先ノード番号, 辺の重み)の組の列である，隣接リスト形式のグラフ．</param>
+        /// <param name="weightMax">到達不能であることを表す値として用いる，重みの最大値．</param>
+        /// <param name="start">始点のノード番号．</param>
+        /// <param name="pqSize">内部で使用する優先度付きキューの初期容量．</param>
+        /// <returns>dists[i] := startからノードiまでの最短距離を満たすテーブル．到達不能な場合はweightMax．</returns>
+        /// <remarks>計算量: O((V + E) log V)．Vはノード数，Eは辺数．</remarks>
         public static T[] DijkstraSearch<T>(List<(int, T)>[] graph, T weightMax, int start, int pqSize = 1000000) where T : struct, INumber<T>
         {
             var dists = new T[graph.Length];
@@ -867,23 +1227,47 @@ namespace Algorithms
 
 namespace DataStructures
 {
+    /// <summary>
+    /// Union-Find木（素集合データ構造）．ノードのグループ分けと，グループの併合・判定をほぼ定数時間で行う．
+    /// </summary>
     public class UnionFindTrees
     {
         readonly int[] _parentOf;
         readonly int[] _sizes;
 
+        /// <summary>
+        /// 0 ~ size - 1のノードが，それぞれ単独のグループを成す状態で初期化する．
+        /// </summary>
+        /// <param name="size">ノード数．</param>
         public UnionFindTrees(int size)
         {
             _parentOf = Enumerable.Repeat(-1, size).ToArray();
             _sizes = Enumerable.Repeat(1, size).ToArray();
         }
 
+        /// <summary>ノードnが属するグループの代表（根）ノード番号を返す．経路圧縮を行う．</summary>
+        /// <param name="n">対象のノード番号．</param>
+        /// <returns>nが属するグループの根ノード番号．</returns>
+        /// <remarks>計算量: 償却O(α(n))．α はアッカーマン関数の逆関数で，実用上は定数とみなせる．</remarks>
         public int GetRootOf(int n) => (_parentOf[n] < 0) ? n : CompressPath(_parentOf[n]);
 
+        /// <summary>ノードmとnが同じグループに属するかどうかを判定する．</summary>
+        /// <param name="m">対象のノード番号．</param>
+        /// <param name="n">対象のノード番号．</param>
+        /// <returns>mとnが同じグループに属していればtrue．</returns>
+        /// <remarks>計算量: 償却O(α(n))．</remarks>
         public bool AreSame(int m, int n) => GetRootOf(m) == GetRootOf(n);
 
+        /// <summary>ノードvが属するグループに含まれるノード数を返す．</summary>
+        /// <param name="v">対象のノード番号．</param>
+        /// <returns>vが属するグループのノード数．</returns>
+        /// <remarks>計算量: 償却O(α(n))．</remarks>
         public int Size(int v) => _sizes[GetRootOf(v)];
 
+        /// <summary>ノードmとnが属するグループを併合する（union by rank）．既に同じグループであれば何もしない．</summary>
+        /// <param name="m">対象のノード番号．</param>
+        /// <param name="n">対象のノード番号．</param>
+        /// <remarks>計算量: 償却O(α(n))．</remarks>
         public void Unite(int m, int n)
         {
             var rootM = GetRootOf(m);
@@ -908,6 +1292,7 @@ namespace DataStructures
             _sizes[r0] += _sizes[r1];
         }
 
+        // ノードnから根までの経路上の全ノードを，根に直接つなぎ替える（経路圧縮）．
         int CompressPath(int n)
         {
             var parent = _parentOf[n];
@@ -920,19 +1305,41 @@ namespace DataStructures
         }
     }
 
+    /// <summary>
+    /// AVL木（平衡二分探索木）．重複を許容する要素の追加・削除・探索を対数時間で行う．
+    /// MultiSet&lt;T&gt;の内部実装として用いられる．
+    /// </summary>
+    /// <typeparam name="T">要素の型．</typeparam>
     public class BinaryTree<T>
     {
         Node? _root;
         Comparison<T> _comparison;
 
+        /// <summary>木に含まれる最小の要素．木が空の場合はdefault(T)．計算量: O(log n)．</summary>
         public T? Min => _root is null ? default : GetMin(_root).Value;
+
+        /// <summary>木に含まれる最大の要素．木が空の場合はdefault(T)．計算量: O(log n)．</summary>
         public T? Max => _root is null ? default : GetMax(_root).Value;
+
+        /// <summary>木に含まれる要素数（重複を含む）．</summary>
         public int Count { get; private set; }
 
+        /// <summary>デフォルトの比較方法で空の木を初期化する．</summary>
         public BinaryTree() : this(Comparer<T>.Default.Compare) { }
+
+        /// <summary>指定した比較方法で空の木を初期化する．</summary>
+        /// <param name="comparison">要素の大小比較方法．</param>
         public BinaryTree(Comparison<T> comparison) => this._comparison = comparison;
+
+        /// <summary>デフォルトの比較方法で，dataの各要素を追加した状態で初期化する．</summary>
+        /// <param name="data">初期要素の列．</param>
+        /// <remarks>計算量: O(n log n)．nはdataの要素数．</remarks>
         public BinaryTree(IEnumerable<T> data) : this(data, Comparer<T>.Default.Compare) { }
 
+        /// <summary>指定した比較方法で，dataの各要素を追加した状態で初期化する．</summary>
+        /// <param name="data">初期要素の列．</param>
+        /// <param name="comparison">要素の大小比較方法．</param>
+        /// <remarks>計算量: O(n log n)．nはdataの要素数．</remarks>
         public BinaryTree(IEnumerable<T> data, Comparison<T> comparison)
         {
             _comparison = comparison;
@@ -940,6 +1347,10 @@ namespace DataStructures
                 Add(d);
         }
 
+        /// <summary>valueと等しい要素が木に含まれるかどうかを判定する．</summary>
+        /// <param name="value">検索する値．</param>
+        /// <returns>valueが含まれていればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool Contains(T value)
         {
             var node = _root;
@@ -956,12 +1367,19 @@ namespace DataStructures
             return false;
         }
 
+        /// <summary>valueを木に追加する．重複する値も追加できる．</summary>
+        /// <param name="value">追加する値．</param>
+        /// <remarks>計算量: O(log n)．</remarks>
         public void Add(T value)
         {
             _root = Insert(_root, value, out _);
             Count++;
         }
 
+        /// <summary>valueと等しい要素を1つ木から削除する．</summary>
+        /// <param name="value">削除する値．</param>
+        /// <returns>削除できればtrue．valueが木に含まれていなければfalse．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool Remove(T value)
         {
             _root = Remove(_root, value, out _, out var found);
@@ -970,12 +1388,27 @@ namespace DataStructures
             return found;
         }
 
+        /// <summary>valueより大きい要素のうち最小のものを取得する（GetUpperBoundと同義）．</summary>
+        /// <param name="value">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>valueより大きい要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetNext(T value, [MaybeNullWhen(false)] out T result)
             => TryGetUpperBound(value, out result);
 
+        /// <summary>valueより大きい要素のうち最小のものを取得する（GetUpperBoundと同義）．</summary>
+        /// <param name="value">基準値．</param>
+        /// <returns>valueより大きい要素のうち最小の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetNext(T value)
             => GetUpperBound(value);
 
+        /// <summary>value未満の要素のうち最大のものを取得する．</summary>
+        /// <param name="value">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>valueより小さい要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetPrev(T value, [MaybeNullWhen(false)] out T result)
         {
             Node? res = null;
@@ -994,6 +1427,11 @@ namespace DataStructures
             }
         }
 
+        /// <summary>value未満の要素のうち最大のものを取得する．</summary>
+        /// <param name="value">基準値．</param>
+        /// <returns>valueより小さい要素のうち最大の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetPrev(T value)
         {
             if (TryGetPrev(value, out var result))
@@ -1003,6 +1441,11 @@ namespace DataStructures
             throw new InvalidOperationException("Sequence contains no matching element.");
         }
 
+        /// <summary>min以上の要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>min以上の要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetLowerBound(T min, [MaybeNullWhen(false)] out T result)
         {
             var lb = GetLowerBound(_root, min);
@@ -1018,6 +1461,11 @@ namespace DataStructures
             }
         }
 
+        /// <summary>min以上の要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <returns>min以上の要素のうち最小の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetLowerBound(T min)
         {
             if (TryGetLowerBound(min, out var result))
@@ -1027,6 +1475,11 @@ namespace DataStructures
             throw new InvalidOperationException("Sequence contains no matching element.");
         }
 
+        /// <summary>minより大きい要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>minより大きい要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetUpperBound(T min, [MaybeNullWhen(false)] out T result)
         {
             var ub = GetUpperBound(_root, min);
@@ -1042,6 +1495,11 @@ namespace DataStructures
             }
         }
 
+        /// <summary>minより大きい要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <returns>minより大きい要素のうち最小の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetUpperBound(T min)
         {
             if (TryGetUpperBound(min, out var result))
@@ -1329,33 +1787,57 @@ namespace DataStructures
         }
     }
 
+    /// <summary>
+    /// 重複を許容する集合（多重集合）．BinaryTree&lt;T&gt;とDictionary&lt;T, int&gt;を用いて，
+    /// 追加・削除・近傍探索を対数時間で行う．
+    /// </summary>
+    /// <typeparam name="T">要素の型．</typeparam>
     public class MultiSet<T> where T : notnull
     {
         readonly BinaryTree<T> _tree;
         readonly Dictionary<T, int> _counts;
 
+        /// <summary>集合に含まれる要素数（重複を含む）．</summary>
         public int Count { get; private set; }
+
+        /// <summary>集合に含まれる相異なる値の種類数．</summary>
         public int UniqueCount => _counts.Count;
 
+        /// <summary>集合に含まれる最小の要素．集合が空の場合はdefault(T)．計算量: O(log n)．</summary>
         public T? Min => _tree.Min;
+
+        /// <summary>集合に含まれる最大の要素．集合が空の場合はdefault(T)．計算量: O(log n)．</summary>
         public T? Max => _tree.Max;
 
+        /// <summary>デフォルトの比較方法で空の集合を初期化する．</summary>
         public MultiSet() : this(Comparer<T>.Default.Compare) { }
 
+        /// <summary>指定した比較方法で空の集合を初期化する．</summary>
+        /// <param name="comparison">要素の大小比較方法．</param>
         public MultiSet(Comparison<T> comparison)
         {
             _tree = new BinaryTree<T>(comparison);
             _counts = new Dictionary<T, int>();
         }
 
+        /// <summary>デフォルトの比較方法で，dataの各要素を追加した状態で初期化する．</summary>
+        /// <param name="data">初期要素の列．</param>
+        /// <remarks>計算量: O(n log n)．nはdataの要素数．</remarks>
         public MultiSet(IEnumerable<T> data) : this(data, Comparer<T>.Default.Compare) { }
 
+        /// <summary>指定した比較方法で，dataの各要素を追加した状態で初期化する．</summary>
+        /// <param name="data">初期要素の列．</param>
+        /// <param name="comparison">要素の大小比較方法．</param>
+        /// <remarks>計算量: O(n log n)．nはdataの要素数．</remarks>
         public MultiSet(IEnumerable<T> data, Comparison<T> comparison) : this(comparison)
         {
             foreach (var d in data)
                 Add(d);
         }
 
+        /// <summary>valueを集合に追加する．重複する値も追加できる．</summary>
+        /// <param name="value">追加する値．</param>
+        /// <remarks>計算量: 償却O(log n)．</remarks>
         public void Add(T value)
         {
             if (_counts.TryGetValue(value, out var count))
@@ -1370,6 +1852,10 @@ namespace DataStructures
             Count++;
         }
 
+        /// <summary>valueと等しい要素を1つ集合から削除する．</summary>
+        /// <param name="value">削除する値．</param>
+        /// <returns>削除できればtrue．valueが集合に含まれていなければfalse．</returns>
+        /// <remarks>計算量: 償却O(log n)．</remarks>
         public bool Remove(T value)
         {
             if (!_counts.TryGetValue(value, out var count))
@@ -1388,6 +1874,10 @@ namespace DataStructures
             return true;
         }
 
+        /// <summary>valueと等しい要素を全て集合から削除する．</summary>
+        /// <param name="value">削除する値．</param>
+        /// <returns>削除した個数．</returns>
+        /// <remarks>計算量: 償却O(log n)．</remarks>
         public int RemoveAll(T value)
         {
             if (!_counts.TryGetValue(value, out var count))
@@ -1399,23 +1889,80 @@ namespace DataStructures
             return count;
         }
 
+        /// <summary>valueと等しい要素が集合に含まれるかどうかを判定する．</summary>
+        /// <param name="value">検索する値．</param>
+        /// <returns>valueが1個以上含まれていればtrue．</returns>
+        /// <remarks>計算量: O(1)．</remarks>
         public bool Contains(T value) => _counts.ContainsKey(value);
 
+        /// <summary>valueと等しい要素の個数を返す．</summary>
+        /// <param name="value">検索する値．</param>
+        /// <returns>valueと等しい要素の個数．含まれていなければ0．</returns>
+        /// <remarks>計算量: O(1)．</remarks>
         public int GetCount(T value) => _counts.TryGetValue(value, out var count) ? count : 0;
 
+        /// <summary>valueより大きい要素のうち最小のものを取得する（GetUpperBoundと同義）．</summary>
+        /// <param name="value">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>valueより大きい要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetNext(T value, [MaybeNullWhen(false)] out T result) => _tree.TryGetNext(value, out result);
+
+        /// <summary>valueより大きい要素のうち最小のものを取得する（GetUpperBoundと同義）．</summary>
+        /// <param name="value">基準値．</param>
+        /// <returns>valueより大きい要素のうち最小の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetNext(T value) => _tree.GetNext(value);
 
+        /// <summary>value未満の要素のうち最大のものを取得する．</summary>
+        /// <param name="value">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>valueより小さい要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetPrev(T value, [MaybeNullWhen(false)] out T result) => _tree.TryGetPrev(value, out result);
+
+        /// <summary>value未満の要素のうち最大のものを取得する．</summary>
+        /// <param name="value">基準値．</param>
+        /// <returns>valueより小さい要素のうち最大の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetPrev(T value) => _tree.GetPrev(value);
 
+        /// <summary>min以上の要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>min以上の要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetLowerBound(T min, [MaybeNullWhen(false)] out T result) => _tree.TryGetLowerBound(min, out result);
+
+        /// <summary>min以上の要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <returns>min以上の要素のうち最小の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetLowerBound(T min) => _tree.GetLowerBound(min);
 
+        /// <summary>minより大きい要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <param name="result">見つかった値．見つからない場合はdefault(T)．</param>
+        /// <returns>minより大きい要素が存在すればtrue．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public bool TryGetUpperBound(T min, [MaybeNullWhen(false)] out T result) => _tree.TryGetUpperBound(min, out result);
+
+        /// <summary>minより大きい要素のうち最小のものを取得する．</summary>
+        /// <param name="min">基準値．</param>
+        /// <returns>minより大きい要素のうち最小の値．</returns>
+        /// <exception cref="InvalidOperationException">条件を満たす要素が存在しない場合．</exception>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T GetUpperBound(T min) => _tree.GetUpperBound(min);
     }
 
+    /// <summary>
+    /// セグメント木．(T, op, identity)がモノイドをなす任意の演算に対して，
+    /// 1点更新と区間へのop適用（区間クエリ）を対数時間で行う．
+    /// </summary>
+    /// <typeparam name="T">セグメント木が保持する値の型．</typeparam>
     public class SegmentTree<T>
     {
         readonly int _numLeaves;
@@ -1423,6 +1970,13 @@ namespace DataStructures
         readonly Func<T, T, T> _op;
         readonly T _identity;
 
+        /// <summary>
+        /// セグメント木を初期化する．
+        /// </summary>
+        /// <param name="values">この木が葉に保持する値の初期値．</param>
+        /// <param name="op">写像(T, T) -> T．(T, op, identity)はモノイド．</param>
+        /// <param name="identity">Tの単位元．</param>
+        /// <remarks>計算量: O(n)．nはvaluesの要素数．</remarks>
         public SegmentTree(IEnumerable<T> values, Func<T, T, T> op, T identity)
         {
             _op = op;
@@ -1437,8 +1991,20 @@ namespace DataStructures
                 _nodes[i] = op(_nodes[GetLeftIdx(i)], _nodes[GetRightIdx(i)]);
         }
 
+        /// <summary>
+        /// 添字idxの葉の値を取得する．
+        /// </summary>
+        /// <param name="idx">葉の添字（0-indexed）．</param>
+        /// <returns>idx番目の葉が保持する値．</returns>
+        /// <remarks>計算量: O(1)．</remarks>
         public T GetValue(int idx) => _nodes[idx + _numLeaves - 1];
 
+        /// <summary>
+        /// 添字idxの葉の値をvalueに更新する．
+        /// </summary>
+        /// <param name="idx">葉の添字（0-indexed）．</param>
+        /// <param name="value">新しい値．</param>
+        /// <remarks>計算量: O(log n)．</remarks>
         public void Update(int idx, T value)
         {
             var i = idx + _numLeaves - 1;
@@ -1453,8 +2019,10 @@ namespace DataStructures
         /// <summary>
         /// 区間[a, b)で演算opを実行した結果を返す.
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">区間の下端（この値を含む）．</param>
+        /// <param name="b">区間の上端（この値を含まない）．</param>
+        /// <returns>区間[a, b)の全要素にopを適用した結果．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T Query(int a, int b) => SubQuery(a, b, 0, 0, _numLeaves);
 
         T SubQuery(int a, int b, int nodeIdx, int left, int right)
@@ -1480,10 +2048,11 @@ namespace DataStructures
     }
 
     /// <summary>
-    /// 遅延セグメント木
+    /// 遅延セグメント木．(T, op, identity)がモノイドをなす任意の演算に対して，
+    /// 区間更新と区間クエリの両方を対数時間で行う．
     /// </summary>
-    /// <typeparam name="T">セグメント木が保持する値の型</typeparam>
-    /// <typeparam name="U">値の更新時に作用させる値の型</typeparam>
+    /// <typeparam name="T">セグメント木が保持する値の型．</typeparam>
+    /// <typeparam name="U">値の更新時に作用させる値の型．</typeparam>
     public class LazySegmentTree<T, U>
     {
         readonly int _numLeaves;
@@ -1506,6 +2075,7 @@ namespace DataStructures
         /// <param name="updator">T型の値をU型の値を用いて更新する関数.</param>
         /// <param name="composer">U型の値を合成する関数. updator(updator(t, u1), u2) == updator(t, composer(u1, u2))を満たす.</param>
         /// <param name="updateIdentity">Uの単位元.</param>
+        /// <remarks>計算量: O(n)．nはvaluesの要素数．</remarks>
         public LazySegmentTree(IEnumerable<T> values, Func<T, T, T> op, T identity, Func<T, U, T> updator, Func<U, U, U> composer, U updateIdentity)
         {
             _op = op;
@@ -1530,14 +2100,21 @@ namespace DataStructures
                 _nodes[i] = op(_nodes[GetLeftIdx(i)], _nodes[GetRightIdx(i)]);
         }
 
+        /// <summary>
+        /// 添字idxの値に指定した値を作用させて更新する.
+        /// </summary>
+        /// <param name="idx">葉の添字（0-indexed）．</param>
+        /// <param name="update">作用させる値．</param>
+        /// <remarks>計算量: O(log n)．</remarks>
         public void Update(int idx, U update) => Update(idx, idx + 1, update, 0, 0, _numLeaves);
 
         /// <summary>
         /// 区間[a, b)の値に指定した値を作用させて更新する.
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="update"></param>
+        /// <param name="a">区間の下端（この値を含む）．</param>
+        /// <param name="b">区間の上端（この値を含まない）．</param>
+        /// <param name="update">作用させる値．</param>
+        /// <remarks>計算量: O(log n)．</remarks>
         public void Update(int a, int b, U update) => Update(a, b, update, 0, 0, _numLeaves);
 
         void Update(int a, int b, U update, int nodeIdx, int left, int right)
@@ -1564,8 +2141,10 @@ namespace DataStructures
         /// <summary>
         /// 区間[a, b)で演算opを実行した結果を返す.
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">区間の下端（この値を含む）．</param>
+        /// <param name="b">区間の上端（この値を含まない）．</param>
+        /// <returns>区間[a, b)の全要素にopを適用した結果．</returns>
+        /// <remarks>計算量: O(log n)．</remarks>
         public T Query(int a, int b) => SubQuery(a, b, 0, 0, _numLeaves);
 
         T SubQuery(int a, int b, int nodeIdx, int left, int right)
