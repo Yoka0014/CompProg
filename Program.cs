@@ -586,7 +586,7 @@ namespace IterTools
             int i;
             for (i = seq.Length - 2; i >= 0 && seq[i].CompareTo(seq[i + 1]) >= 0; i--) ;
 
-            if (i == -1)
+            if (i < 0)
                 return false;
 
             int j;
@@ -601,36 +601,26 @@ namespace IterTools
             return true;
         }
 
+        /// <summary>
+        /// seqの要素から成る順列を，辞書順で最小のものから昇順に全て列挙する．
+        /// seqがソート済みである必要はない．
+        /// seqに重複する要素が含まれる場合は，相異なる順列のみを列挙する．
+        /// </summary>
+        /// <remarks>
+        /// 返す配列は列挙のたびに新しく確保するので，そのまま保持してよい．
+        /// アロケーションを避けたい場合はNextを直接使う．
+        /// </remarks>
         public static IEnumerable<T[]> Enumerate<T>(T[] seq) where T : IComparable<T>
         {
-            if (seq.Length == 0)
-            {
-                yield return Array.Empty<T>();
-                yield break;
-            }
-
             var p = new T[seq.Length];
             seq.CopyTo(p, 0);
-            var count = 0;
-            var numPermutaions = MathEx.Factorial((long)seq.Length);
+            Array.Sort(p);
+
             do
             {
-                yield return p;
-                count++;
+                yield return (T[])p.Clone();
             }
             while (Next<T>(p));
-
-            if (count == numPermutaions)
-                yield break;
-
-            seq.CopyTo(p, 0);
-            Array.Sort(p);
-            while (count < numPermutaions)
-            {
-                yield return p;
-                count++;
-                Next<T>(p);
-            }
         }
     }
 }
@@ -1067,7 +1057,10 @@ namespace DataStructures
 
         void GetPrev(Node? node, T value, ref Node? res)
         {
-            var comp = _comparison(value, node!.Value);
+            if (node is null)
+                return;
+
+            var comp = _comparison(value, node.Value);
 
             if (comp == 0)
             {
