@@ -8,7 +8,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
-using System.Threading;
 using Algorithms;
 using DataStructures;
 using IterTools;
@@ -42,7 +41,7 @@ sr?.Dispose();
 
 
 [MethodImpl(MethodImplOptions.AggressiveOptimization)]
-void Solve()
+static void Solve()
 {
 
 }
@@ -204,27 +203,27 @@ struct FastHashInt64
 
 struct ModInt998244353
 {
-    const long _Mod = 998244353;
+    const long _mod = 998244353;
 
-    public static long Mod => _Mod;
+    public static long Mod => _mod;
     public long Value { get; set; }
 
     public ModInt998244353(long value)
     {
-        Value = value % _Mod;
+        Value = value % _mod;
         if (Value < 0)
-            Value += _Mod;
+            Value += _mod;
     }
 
     public static implicit operator ModInt998244353(long value) => new(value);
     public static implicit operator long(ModInt998244353 value) => value.Value;
-    public static implicit operator ModInt998244353(BigInteger value) => new((long)(value % _Mod));
+    public static implicit operator ModInt998244353(BigInteger value) => new((long)(value % _mod));
     public static implicit operator BigInteger(ModInt998244353 value) => value.Value;
 
     public static ModInt998244353 operator +(ModInt998244353 a, ModInt998244353 b) => new(a.Value + b.Value);
     public static ModInt998244353 operator -(ModInt998244353 a, ModInt998244353 b) => new(a.Value - b.Value);
     public static ModInt998244353 operator *(ModInt998244353 a, ModInt998244353 b) => new(a.Value * b.Value);
-    public static ModInt998244353 operator /(ModInt998244353 a, ModInt998244353 b) => new(a.Value * MathEx.ModInv(b.Value, _Mod));
+    public static ModInt998244353 operator /(ModInt998244353 a, ModInt998244353 b) => new(a.Value * MathEx.ModInv(b.Value, _mod));
     public static ModInt998244353 operator %(ModInt998244353 a, ModInt998244353 b) => new(a.Value % b.Value);
     public static ModInt998244353 operator ++(ModInt998244353 a) => new(a.Value + 1);
     public static ModInt998244353 operator --(ModInt998244353 a) => new(a.Value - 1);
@@ -254,8 +253,8 @@ struct ModInt998244353
 
     public override readonly int GetHashCode() => (int)Sse42.X64.Crc32(0UL, (ulong)Value);
 
-    public readonly ModInt998244353 Inv() => new(MathEx.ModInv(Value, _Mod));
-    public readonly ModInt998244353 Pow(long exp) => BigInteger.ModPow(Value, exp, _Mod);
+    public readonly ModInt998244353 Inv() => new(MathEx.ModInv(Value, _mod));
+    public readonly ModInt998244353 Pow(long exp) => BigInteger.ModPow(Value, exp, _mod);
 }
 
 struct FastHashUInt64
@@ -1424,60 +1423,60 @@ namespace DataStructures
 
     public class SegmentTree<T>
     {
-        readonly int NUM_LEAVES;
-        readonly T[] nodes;
-        readonly Func<T, T, T> OP;
-        readonly T IDENTITY;
+        readonly int _numLeaves;
+        readonly T[] _nodes;
+        readonly Func<T, T, T> _op;
+        readonly T _identity;
 
         public SegmentTree(IEnumerable<T> values, Func<T, T, T> op, T identity)
         {
-            OP = op;
-            IDENTITY = identity;
+            _op = op;
+            _identity = identity;
             var valuesArray = values.ToArray();
-            NUM_LEAVES = 1 << MathEx.CeilLog2(valuesArray.Length);
-            nodes = new T[(NUM_LEAVES << 1) - 1];
-            Array.Copy(valuesArray, 0, nodes, NUM_LEAVES - 1, valuesArray.Length);
-            Array.Fill(nodes, identity, NUM_LEAVES + valuesArray.Length - 1, NUM_LEAVES - valuesArray.Length);
+            _numLeaves = 1 << MathEx.CeilLog2(valuesArray.Length);
+            _nodes = new T[(_numLeaves << 1) - 1];
+            Array.Copy(valuesArray, 0, _nodes, _numLeaves - 1, valuesArray.Length);
+            Array.Fill(_nodes, identity, _numLeaves + valuesArray.Length - 1, _numLeaves - valuesArray.Length);
 
-            for (var i = NUM_LEAVES - 2; i >= 0; i--)
-                nodes[i] = op(nodes[GetLeftIdx(i)], nodes[GetRightIdx(i)]);
+            for (var i = _numLeaves - 2; i >= 0; i--)
+                _nodes[i] = op(_nodes[GetLeftIdx(i)], _nodes[GetRightIdx(i)]);
         }
 
-        public T GetValue(int idx) => nodes[idx + NUM_LEAVES - 1];
+        public T GetValue(int idx) => _nodes[idx + _numLeaves - 1];
 
         public void Update(int idx, T value)
         {
-            var i = idx + NUM_LEAVES - 1;
-            nodes[i] = value;
+            var i = idx + _numLeaves - 1;
+            _nodes[i] = value;
             while (i > 0)
             {
                 i = GetParentIdx(i);
-                nodes[i] = OP(nodes[GetLeftIdx(i)], nodes[GetRightIdx(i)]);
+                _nodes[i] = _op(_nodes[GetLeftIdx(i)], _nodes[GetRightIdx(i)]);
             }
         }
 
         /// <summary>
-        /// 区間[a, b)で演算OPを実行した結果を返す.
+        /// 区間[a, b)で演算opを実行した結果を返す.
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        public T Query(int a, int b) => SubQuery(a, b, 0, 0, NUM_LEAVES);
+        public T Query(int a, int b) => SubQuery(a, b, 0, 0, _numLeaves);
 
         T SubQuery(int a, int b, int nodeIdx, int left, int right)
         {
             // クエリの範囲外
             if (right <= a || b <= left)
-                return IDENTITY;
+                return _identity;
 
             // クエリの範囲に完全に属している
             if (a <= left && right <= b)
-                return nodes[nodeIdx];
+                return _nodes[nodeIdx];
 
             // クエリの範囲を部分的に含む
             var mid = (left + right) >> 1;
             var vl = SubQuery(a, b, GetLeftIdx(nodeIdx), left, mid);
             var vr = SubQuery(a, b, GetRightIdx(nodeIdx), mid, right);
-            return OP(vl, vr);
+            return _op(vl, vr);
         }
 
         static int GetParentIdx(int i) => (i - 1) >> 1;
@@ -1492,16 +1491,16 @@ namespace DataStructures
     /// <typeparam name="U">値の更新時に作用させる値の型</typeparam>
     public class LazySegmentTree<T, U>
     {
-        readonly int NUM_LEAVES;
-        readonly T[] nodes;
-        readonly U[] updates;
+        readonly int _numLeaves;
+        readonly T[] _nodes;
+        readonly U[] _updates;
 
-        readonly Func<T, T, T> OP;
-        readonly T IDENTITY;
+        readonly Func<T, T, T> _op;
+        readonly T _identity;
 
-        readonly Func<T, U, T> UPDATOR;
-        readonly Func<U, U, U> COMPOSER;
-        readonly U UPDATE_IDENTITY;
+        readonly Func<T, U, T> _updator;
+        readonly Func<U, U, U> _composer;
+        readonly U _updateIdentity;
 
         /// <summary>
         /// 遅延セグメント木を初期化する
@@ -1514,29 +1513,29 @@ namespace DataStructures
         /// <param name="updateIdentity">Uの単位元.</param>
         public LazySegmentTree(IEnumerable<T> values, Func<T, T, T> op, T identity, Func<T, U, T> updator, Func<U, U, U> composer, U updateIdentity)
         {
-            OP = op;
-            IDENTITY = identity;
+            _op = op;
+            _identity = identity;
 
-            UPDATOR = updator;
-            COMPOSER = composer;
-            UPDATE_IDENTITY = updateIdentity;
+            _updator = updator;
+            _composer = composer;
+            _updateIdentity = updateIdentity;
 
             var valuesArray = values.ToArray();
-            NUM_LEAVES = 1 << MathEx.FloorLog2(valuesArray.Length);
-            if (NUM_LEAVES < valuesArray.Length)
-                NUM_LEAVES <<= 1;
+            _numLeaves = 1 << MathEx.FloorLog2(valuesArray.Length);
+            if (_numLeaves < valuesArray.Length)
+                _numLeaves <<= 1;
 
-            nodes = new T[(NUM_LEAVES << 1) - 1];
-            updates = new U[nodes.Length];
-            Array.Copy(valuesArray, 0, nodes, NUM_LEAVES - 1, valuesArray.Length);
-            Array.Fill(nodes, identity, NUM_LEAVES + valuesArray.Length - 1, NUM_LEAVES - valuesArray.Length);
-            Array.Fill(updates, updateIdentity);
+            _nodes = new T[(_numLeaves << 1) - 1];
+            _updates = new U[_nodes.Length];
+            Array.Copy(valuesArray, 0, _nodes, _numLeaves - 1, valuesArray.Length);
+            Array.Fill(_nodes, identity, _numLeaves + valuesArray.Length - 1, _numLeaves - valuesArray.Length);
+            Array.Fill(_updates, updateIdentity);
 
-            for (var i = NUM_LEAVES - 2; i >= 0; i--)
-                nodes[i] = op(nodes[GetLeftIdx(i)], nodes[GetRightIdx(i)]);
+            for (var i = _numLeaves - 2; i >= 0; i--)
+                _nodes[i] = op(_nodes[GetLeftIdx(i)], _nodes[GetRightIdx(i)]);
         }
 
-        public void Update(int idx, U update) => Update(idx, idx + 1, update, 0, 0, NUM_LEAVES);
+        public void Update(int idx, U update) => Update(idx, idx + 1, update, 0, 0, _numLeaves);
 
         /// <summary>
         /// 区間[a, b)の値に指定した値を作用させて更新する.
@@ -1544,7 +1543,7 @@ namespace DataStructures
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <param name="update"></param>
-        public void Update(int a, int b, U update) => Update(a, b, update, 0, 0, NUM_LEAVES);
+        public void Update(int a, int b, U update) => Update(a, b, update, 0, 0, _numLeaves);
 
         void Update(int a, int b, U update, int nodeIdx, int left, int right)
         {
@@ -1553,8 +1552,8 @@ namespace DataStructures
             // 区間[a, b)に完全に含まれる.
             if (left >= a && b >= right)
             {
-                updates[nodeIdx] = update;
-                Eval(nodeIdx);  // 親ノードに値を伝播するため,ここで評価が必要. 
+                _updates[nodeIdx] = update;
+                Eval(nodeIdx);  // 親ノードに値を伝播するため,ここで評価が必要.
             }
             else if (right > a && left < b)  // 区間[a, b)に部分的に含まれる.
             {
@@ -1563,16 +1562,16 @@ namespace DataStructures
                 var rightIdx = GetRightIdx(nodeIdx);
                 Update(a, b, update, leftIdx, left, mid);
                 Update(a, b, update, rightIdx, mid, right);
-                nodes[nodeIdx] = OP(nodes[leftIdx], nodes[rightIdx]);
+                _nodes[nodeIdx] = _op(_nodes[leftIdx], _nodes[rightIdx]);
             }
         }
 
         /// <summary>
-        /// 区間[a, b)で演算OPを実行した結果を返す.
+        /// 区間[a, b)で演算opを実行した結果を返す.
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        public T Query(int a, int b) => SubQuery(a, b, 0, 0, NUM_LEAVES);
+        public T Query(int a, int b) => SubQuery(a, b, 0, 0, _numLeaves);
 
         T SubQuery(int a, int b, int nodeIdx, int left, int right)
         {
@@ -1580,17 +1579,17 @@ namespace DataStructures
 
             // クエリの範囲外
             if (right <= a || b <= left)
-                return IDENTITY;
+                return _identity;
 
             // クエリの範囲に完全に属している
             if (a <= left && right <= b)
-                return nodes[nodeIdx];
+                return _nodes[nodeIdx];
 
             // クエリの範囲を部分的に含む
             var mid = (left + right) >> 1;
             var vl = SubQuery(a, b, GetLeftIdx(nodeIdx), left, mid);
             var vr = SubQuery(a, b, GetRightIdx(nodeIdx), mid, right);
-            return OP(vl, vr);
+            return _op(vl, vr);
         }
 
         /// <summary>
@@ -1600,21 +1599,21 @@ namespace DataStructures
         /// <param name="nodeIdx"></param>
         void Eval(int nodeIdx)
         {
-            if (EqualityComparer<U>.Default.Equals(updates[nodeIdx], UPDATE_IDENTITY))
+            if (EqualityComparer<U>.Default.Equals(_updates[nodeIdx], _updateIdentity))
                 return;
 
             // 子ノードも更新対象なので更新値を伝播させる.
-            if (nodeIdx < NUM_LEAVES - 1)
+            if (nodeIdx < _numLeaves - 1)
             {
                 var leftIdx = GetLeftIdx(nodeIdx);
-                updates[leftIdx] = COMPOSER(updates[leftIdx], updates[nodeIdx]);
+                _updates[leftIdx] = _composer(_updates[leftIdx], _updates[nodeIdx]);
 
                 var rightIdx = GetRightIdx(nodeIdx);
-                updates[rightIdx] = COMPOSER(updates[rightIdx], updates[nodeIdx]);
+                _updates[rightIdx] = _composer(_updates[rightIdx], _updates[nodeIdx]);
             }
 
-            nodes[nodeIdx] = UPDATOR(nodes[nodeIdx], updates[nodeIdx]);
-            updates[nodeIdx] = UPDATE_IDENTITY;
+            _nodes[nodeIdx] = _updator(_nodes[nodeIdx], _updates[nodeIdx]);
+            _updates[nodeIdx] = _updateIdentity;
         }
 
         static int GetLeftIdx(int i) => (i << 1) + 1;
