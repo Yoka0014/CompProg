@@ -1,4 +1,6 @@
-﻿using System;
+﻿// 出典: https://github.com/Yoka0014/CompProg
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
